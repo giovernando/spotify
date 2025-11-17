@@ -40,7 +40,7 @@ export const Sidebar = () => {
   ];
 
   const collection = [
-    { icon: Heart, label: "Lagu yang Disukai", path: "/collection/liked" },
+    { icon: Heart, label: "Lagu yang Disukai", path: "/favorites" },
     { icon: Clock, label: "Sering Diputar", path: "/collection/recent" },
   ];
 
