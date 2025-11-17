@@ -15,6 +15,7 @@ interface TrackCardProps {
 
 export const TrackCard = ({ index, title, artist, album, duration, cover }: TrackCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   // Load playlists from localStorage, fallback to mock data
   const [playlists, setPlaylists] = useState([
@@ -29,7 +30,15 @@ export const TrackCard = ({ index, title, artist, album, duration, cover }: Trac
     if (savedPlaylists) {
       setPlaylists(JSON.parse(savedPlaylists));
     }
-  }, []);
+
+    // Check if this track is in favorites
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+      const favorites = JSON.parse(savedFavorites);
+      const trackId = `${title}-${artist}`; // Simple ID generation
+      setIsFavorite(favorites.some((fav: any) => fav.id === trackId));
+    }
+  }, [title, artist]);
 
   const handleAddToPlaylist = (playlistId: number) => {
     console.log(`Adding "${title}" to playlist ${playlistId}`);
@@ -37,8 +46,30 @@ export const TrackCard = ({ index, title, artist, album, duration, cover }: Trac
   };
 
   const handleAddToFavorites = () => {
-    console.log(`Adding "${title}" to favorites`);
-    // TODO: Implement add to favorites logic
+    const trackId = `${title}-${artist}`;
+    const savedFavorites = localStorage.getItem('favorites');
+    let favorites = savedFavorites ? JSON.parse(savedFavorites) : [];
+
+    if (isFavorite) {
+      // Remove from favorites
+      favorites = favorites.filter((fav: any) => fav.id !== trackId);
+      setIsFavorite(false);
+    } else {
+      // Add to favorites
+      const newFavorite = {
+        id: trackId,
+        index: favorites.length + 1,
+        title,
+        artist,
+        album,
+        duration,
+        cover,
+      };
+      favorites.push(newFavorite);
+      setIsFavorite(true);
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
   const handleAddToQueue = () => {
@@ -58,7 +89,7 @@ export const TrackCard = ({ index, title, artist, album, duration, cover }: Trac
 
   return (
     <div
-      className="grid grid-cols-[50px_1fr_1fr_100px_50px] gap-4 items-center py-2 px-4 rounded hover:bg-accent group transition-colors cursor-pointer"
+      className="grid grid-cols-[50px_1fr_1fr_100px_80px] gap-4 items-center py-2 px-4 rounded hover:bg-accent group transition-colors cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -90,8 +121,21 @@ export const TrackCard = ({ index, title, artist, album, duration, cover }: Trac
       {/* Duration */}
       <div className="text-sm text-muted-foreground text-right">{duration}</div>
 
-      {/* More Options */}
-      <div className={cn("flex justify-end", !isHovered && "opacity-0")}>
+      {/* Love Button */}
+      <div className={cn("flex justify-end space-x-2", !isHovered && "opacity-0")}>
+        <Button
+          size="icon"
+          variant="ghost"
+          className="h-8 w-8"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleAddToFavorites();
+          }}
+        >
+          <Heart className={cn("w-4 h-4", isFavorite && "fill-red-500 text-red-500")} />
+        </Button>
+
+        {/* More Options */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button size="icon" variant="ghost" className="h-8 w-8">

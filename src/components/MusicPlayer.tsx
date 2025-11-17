@@ -31,19 +31,19 @@ export const MusicPlayer = () => {
           <div className="font-medium text-sm truncate">{currentTrack.title}</div>
           <div className="text-xs text-muted-foreground truncate">{currentTrack.artist}</div>
         </div>
-        <Button
-          size="icon"
-          variant="ghost"
-          className={cn("hover:bg-accent", isLiked && "text-primary")}
-          onClick={() => setIsLiked(!isLiked)}
-        >
-          <Heart className={cn("w-5 h-5", isLiked && "fill-current")} />
-        </Button>
       </div>
 
       {/* Player Controls */}
       <div className="flex flex-col items-center w-2/4 max-w-2xl">
         <div className="flex items-center space-x-4 mb-2">
+          <Button
+            size="icon"
+            variant="ghost"
+            className={cn("hover:bg-accent", isLiked && "text-red-500")}
+            onClick={() => setIsLiked(!isLiked)}
+          >
+            <Heart className={cn("w-4 h-4", isLiked && "fill-current")} />
+          </Button>
           <Button
             size="icon"
             variant="ghost"
