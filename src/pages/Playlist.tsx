@@ -6,7 +6,16 @@ import { TrackCard } from "@/components/TrackCard";
 import { Button } from "@/components/ui/button";
 import { Play, MoreHorizontal } from "lucide-react";
 
-const Playlist = () => {
+interface PlaylistProps {
+  currentTrack: {
+    title: string;
+    artist: string;
+    cover: string;
+  };
+  setCurrentTrack: (track: { title: string; artist: string; cover: string }) => void;
+}
+
+const Playlist = ({ currentTrack, setCurrentTrack }: PlaylistProps) => {
   const { id } = useParams();
 
   const playlist = {
@@ -99,7 +108,7 @@ const Playlist = () => {
 
           {/* Track List */}
           <div className="px-6">
-            <div className="grid grid-cols-[50px_1fr_1fr_100px_50px] gap-4 items-center py-2 px-4 text-sm text-muted-foreground border-b border-border mb-2">
+            <div className="grid grid-cols-[80px_1fr_1fr_100px_80px] gap-4 items-center py-2 px-4 text-sm text-muted-foreground border-b border-border mb-2">
               <div className="text-center">#</div>
               <div>JUDUL</div>
               <div>ALBUM</div>
@@ -111,7 +120,7 @@ const Playlist = () => {
             ))}
           </div>
         </main>
-        <MusicPlayer />
+        <MusicPlayer currentTrack={currentTrack} />
       </div>
     </div>
   );

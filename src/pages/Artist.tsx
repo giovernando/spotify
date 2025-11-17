@@ -4,7 +4,16 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Artist = () => {
+interface ArtistProps {
+  currentTrack: {
+    title: string;
+    artist: string;
+    cover: string;
+  };
+  setCurrentTrack: (track: { title: string; artist: string; cover: string }) => void;
+}
+
+const Artist = ({ currentTrack, setCurrentTrack }: ArtistProps) => {
   const { artistName } = useParams<{ artistName: string }>();
 
   // Mock data for artist tracks - in a real app, this would come from an API

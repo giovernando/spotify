@@ -4,7 +4,16 @@ import { Sidebar } from "@/components/Sidebar";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { PlaylistCard } from "@/components/PlaylistCard";
 
-const Home = () => {
+interface HomeProps {
+  currentTrack: {
+    title: string;
+    artist: string;
+    cover: string;
+  };
+  setCurrentTrack: (track: { title: string; artist: string; cover: string }) => void;
+}
+
+const Home = ({ currentTrack, setCurrentTrack }: HomeProps) => {
   const userName = "John";
   const [selectedTab, setSelectedTab] = useState("all");
 
@@ -209,7 +218,7 @@ const Home = () => {
             )}
           </div>
         </main>
-        <MusicPlayer />
+        <MusicPlayer currentTrack={currentTrack} />
       </div>
     </div>
   );

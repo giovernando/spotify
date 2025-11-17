@@ -15,7 +15,16 @@ interface FavoriteTrack {
   cover?: string;
 }
 
-const Favorites = () => {
+interface FavoritesProps {
+  currentTrack: {
+    title: string;
+    artist: string;
+    cover: string;
+  };
+  setCurrentTrack: (track: { title: string; artist: string; cover: string }) => void;
+}
+
+const Favorites = ({ currentTrack, setCurrentTrack }: FavoritesProps) => {
   const [favorites, setFavorites] = useState<FavoriteTrack[]>([]);
 
   useEffect(() => {
@@ -77,7 +86,7 @@ const Favorites = () => {
             )}
           </div>
         </main>
-        <MusicPlayer />
+        <MusicPlayer currentTrack={currentTrack} />
       </div>
     </div>
   );

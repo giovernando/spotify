@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,27 +17,35 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/playlist/:id" element={<Playlist />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/artist/:artistName" element={<Artist />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const [currentTrack, setCurrentTrack] = useState({
+    title: "Song Title",
+    artist: "Artist Name",
+    cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&h=300&fit=crop",
+  });
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />} />
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/playlist/:id" element={<Playlist currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/favorites" element={<Favorites currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />} />
+            <Route path="/artist/:artistName" element={<Artist currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

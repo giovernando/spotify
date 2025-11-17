@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Play, MoreHorizontal, Plus, ListMusic, User, EyeOff } from "lucide-react";
+import { Play, MoreHorizontal, Plus, ListMusic, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
@@ -49,14 +49,14 @@ export const TrackCard = ({ index, title, artist, album, duration, cover }: Trac
     // TODO: Implement hide song logic
   };
 
-  const handleOpenArtist = () => {
-    console.log(`Opening artist page for "${artist}"`);
-    // TODO: Implement open artist logic
+  const handlePlayTrack = () => {
+    console.log(`Playing track "${title}" by ${artist}`);
+    // TODO: Implement play track logic
   };
 
   return (
     <div
-      className="grid grid-cols-[50px_1fr_1fr_100px_80px] gap-4 items-center py-2 px-4 rounded hover:bg-accent group transition-colors cursor-pointer"
+      className="grid grid-cols-[80px_1fr_1fr_100px_80px] gap-4 items-center py-2 px-4 rounded hover:bg-accent group transition-colors cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -128,9 +128,9 @@ export const TrackCard = ({ index, title, artist, album, duration, cover }: Trac
               <EyeOff className="mr-2 h-4 w-4" />
               Sembunyikan Lagu
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={handleOpenArtist}>
-              <User className="mr-2 h-4 w-4" />
-              Buka Artis
+            <DropdownMenuItem onClick={handlePlayTrack}>
+              <Play className="mr-2 h-4 w-4" />
+              Putar Lagu
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

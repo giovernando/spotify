@@ -4,19 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 
-export const MusicPlayer = () => {
+interface MusicPlayerProps {
+  currentTrack: {
+    title: string;
+    artist: string;
+    cover: string;
+  };
+}
+
+export const MusicPlayer = ({ currentTrack }: MusicPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isShuffle, setIsShuffle] = useState(false);
   const [repeatMode, setRepeatMode] = useState(0); // 0: off, 1: all, 2: one
   const [progress, setProgress] = useState([30]);
   const [volume, setVolume] = useState([70]);
-
-  const currentTrack = {
-    title: "Song Title",
-    artist: "Artist Name",
-    cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&h=300&fit=crop",
-  };
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border h-24 px-4 flex items-center justify-between z-50">
