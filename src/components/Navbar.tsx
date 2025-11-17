@@ -195,6 +195,12 @@ export const Navbar = ({ selectedTab, setSelectedTab }: NavbarProps) => {
               >
                 Podcast
               </button>
+              <button
+                onClick={() => window.location.href = '/search'}
+                className="px-3 py-1 rounded-full text-sm font-medium transition-colors bg-secondary text-secondary-foreground hover:bg-secondary/80"
+              >
+                Cari
+              </button>
             </div>
           )}
         </div>

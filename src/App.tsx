@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Home from "./pages/Home.tsx";
+import Search from "./pages/Search";
+import Library from "./pages/Library";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
@@ -32,6 +34,8 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />} />
+            <Route path="/search" element={<Search currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />} />
+            <Route path="/library" element={<Library currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />

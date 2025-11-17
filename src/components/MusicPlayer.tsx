@@ -92,8 +92,21 @@ export const MusicPlayer = ({ currentTrack }: MusicPlayerProps) => {
 
       {/* Volume Control */}
       <div className="flex items-center space-x-2 w-1/4 justify-end">
-        <Volume2 className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground" />
-        <Slider value={volume} onValueChange={setVolume} max={100} step={1} className="w-16 md:w-24" />
+        <div className="hidden md:flex items-center space-x-2">
+          <Volume2 className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground" />
+          <Slider value={volume} onValueChange={setVolume} max={100} step={1} className="w-16 md:w-24" />
+        </div>
+        <div className="md:hidden flex flex-col items-center space-y-1">
+          <Volume2 className="w-4 h-4 text-muted-foreground" />
+          <Slider
+            value={volume}
+            onValueChange={setVolume}
+            max={100}
+            step={1}
+            orientation="vertical"
+            className="h-16 w-2"
+          />
+        </div>
       </div>
     </div>
   );

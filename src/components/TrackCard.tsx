@@ -160,7 +160,7 @@ export const TrackCard = ({ index, title, artist, album, duration, cover, setCur
       <div className="text-sm text-muted-foreground truncate">{album}</div>
 
       {/* Duration */}
-      <div className="text-sm text-muted-foreground text-right">{duration}</div>
+      <div className="text-sm text-muted-foreground text-right min-w-[60px] md:min-w-[100px]">{duration}</div>
 
       {/* More Options */}
       <div className={cn("flex justify-end", !isHovered && "opacity-0")}>

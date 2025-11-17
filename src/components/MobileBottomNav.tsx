@@ -14,7 +14,7 @@ export const MobileBottomNav = () => {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-20 left-0 right-0 bg-card border-t border-border flex items-center justify-around py-2 z-40">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-card border-t border-border flex items-center justify-around py-2 z-40">
       {navItems.map((item) => (
         <Link key={item.path} to={item.path}>
           <Button
@@ -35,8 +35,9 @@ export const MobileBottomNav = () => {
         size="sm"
         className="flex flex-col items-center space-y-1 h-auto py-2 px-3"
         onClick={() => {
-          // TODO: Open create playlist dialog
-          console.log("Create playlist");
+          // Navigate to library and trigger create playlist
+          window.location.href = '/library';
+          // TODO: Open create playlist dialog after navigation
         }}
       >
         <Plus className="w-5 h-5" />
