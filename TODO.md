@@ -1,1 +1,3 @@
 - [x] Update README.md with project-specific content including description, features, tech stack, setup instructions, and deployment info.
+- [x] Adjust grid layout in Home.tsx and Profile.tsx to fit 5 music cards by changing lg:grid-cols-4 to lg:grid-cols-5.
+- [x] Add category filtering in Home.tsx: add state for selected tab, add podcast data, filter sections based on tab selection.

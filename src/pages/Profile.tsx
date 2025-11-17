@@ -77,7 +77,7 @@ const Profile = () => {
             {/* Top Artists */}
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">Artis Teratas Bulan Ini</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {topArtists.map((artist) => (
                   <PlaylistCard key={artist.id} {...artist} />
                 ))}
@@ -87,7 +87,7 @@ const Profile = () => {
             {/* Top Tracks */}
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">Track Teratas Bulan Ini</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {topTracks.map((track) => (
                   <PlaylistCard key={track.id} {...track} />
                 ))}
