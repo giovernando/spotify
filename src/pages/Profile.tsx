@@ -7,12 +7,21 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PlaylistCard } from "@/components/PlaylistCard";
 
 const Profile = () => {
-  const user = {
-    name: "John Doe",
-    email: "john@example.com",
-    followers: 1234,
-    following: 567,
+  // Get user data from localStorage or use default
+  const getUserData = () => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      return JSON.parse(savedUser);
+    }
+    return {
+      name: "John Doe",
+      email: "john@example.com",
+      followers: 1234,
+      following: 567,
+    };
   };
+
+  const user = getUserData();
 
   const topArtists = [
     {

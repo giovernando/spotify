@@ -13,7 +13,16 @@ import { Input } from "@/components/ui/input";
 import { NotificationDropdown } from "./NotificationDropdown";
 
 export const Navbar = () => {
-  const user = { name: "John Doe", email: "john@example.com" };
+  // Get user data from localStorage or use default
+  const getUserData = () => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      return JSON.parse(savedUser);
+    }
+    return { name: "John Doe", email: "john@example.com" };
+  };
+
+  const user = getUserData();
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
