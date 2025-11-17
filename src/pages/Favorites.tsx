@@ -26,6 +26,7 @@ interface FavoritesProps {
 
 const Favorites = ({ currentTrack, setCurrentTrack }: FavoritesProps) => {
   const [favorites, setFavorites] = useState<FavoriteTrack[]>([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const savedFavorites = localStorage.getItem("favorites");
@@ -54,9 +55,9 @@ const Favorites = ({ currentTrack, setCurrentTrack }: FavoritesProps) => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Navbar />
+        <Navbar onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
         <main className="flex-1 overflow-y-auto pb-24">
           <div className="p-6">
             {/* Header */}

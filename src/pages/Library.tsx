@@ -20,6 +20,7 @@ interface LibraryProps {
 
 const Library = ({ currentTrack, setCurrentTrack }: LibraryProps) => {
   const [selectedTab, setSelectedTab] = useState("playlists");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [playlists, setPlaylists] = useState([
     { id: 1, name: "My Playlist #1", cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&h=300&fit=crop", description: "Created by you" },
     { id: 2, name: "Chill Vibes", cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop", description: "Relaxing music" },
@@ -68,9 +69,7 @@ const Library = ({ currentTrack, setCurrentTrack }: LibraryProps) => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="hidden md:block">
-        <Sidebar />
-      </div>
+      <Sidebar isOpen={isSidebarOpen} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar />
         <main className="flex-1 overflow-y-auto pb-20 md:pb-24">

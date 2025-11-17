@@ -18,6 +18,7 @@ interface HomeProps {
 const Home = ({ currentTrack, setCurrentTrack }: HomeProps) => {
   const userName = "John";
   const [selectedTab, setSelectedTab] = useState("all");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const recentlyPlayed = [
     {
@@ -200,11 +201,9 @@ const Home = ({ currentTrack, setCurrentTrack }: HomeProps) => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="hidden md:block">
-        <Sidebar />
-      </div>
+      <Sidebar isOpen={isSidebarOpen} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Navbar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+        <Navbar selectedTab={selectedTab} setSelectedTab={setSelectedTab} onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
         <main className="flex-1 overflow-y-auto pb-20 md:pb-24">
           <div className="p-4 md:p-6">
             {/* Header */}
@@ -248,7 +247,7 @@ const Home = ({ currentTrack, setCurrentTrack }: HomeProps) => {
             {(selectedTab === "all" || selectedTab === "music") && (
               <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Baru Diputar</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                   {recentlyPlayed.map((item) => (
                     <PlaylistCard key={item.id} {...item} setCurrentTrack={setCurrentTrack} />
                   ))}
@@ -260,7 +259,7 @@ const Home = ({ currentTrack, setCurrentTrack }: HomeProps) => {
             {(selectedTab === "all" || selectedTab === "music") && (
               <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Musik Populer</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                   {popularMusic.map((item) => (
                     <PlaylistCard key={item.id} {...item} setCurrentTrack={setCurrentTrack} />
                   ))}
@@ -272,7 +271,7 @@ const Home = ({ currentTrack, setCurrentTrack }: HomeProps) => {
             {(selectedTab === "all" || selectedTab === "podcast") && (
               <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Podcast Populer</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                   {popularPodcasts.map((item) => (
                     <PlaylistCard key={item.id} {...item} setCurrentTrack={setCurrentTrack} />
                   ))}
@@ -284,7 +283,7 @@ const Home = ({ currentTrack, setCurrentTrack }: HomeProps) => {
             {(selectedTab === "all" || selectedTab === "podcast") && (
               <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Podcast Baru Diputar</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                   {recentlyPlayedPodcasts.map((item) => (
                     <PlaylistCard key={item.id} {...item} setCurrentTrack={setCurrentTrack} />
                   ))}
@@ -296,7 +295,7 @@ const Home = ({ currentTrack, setCurrentTrack }: HomeProps) => {
             {(selectedTab === "all" || selectedTab === "music") && (
               <section className="mb-8">
                 <h2 className="text-2xl font-bold mb-4">Rekomendasi untuk Anda</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                   {recentlyPlayed.map((item) => (
                     <PlaylistCard key={item.id} {...item} setCurrentTrack={setCurrentTrack} />
                   ))}

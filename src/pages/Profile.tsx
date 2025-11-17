@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Sidebar } from "@/components/Sidebar";
 import { MusicPlayer } from "@/components/MusicPlayer";
@@ -7,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PlaylistCard } from "@/components/PlaylistCard";
 
 const Profile = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // Get user data from localStorage or use default
   const getUserData = () => {
     const savedUser = localStorage.getItem('user');
@@ -55,9 +57,9 @@ const Profile = () => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Navbar />
+        <Navbar onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
         <main className="flex-1 overflow-y-auto pb-24">
           <div className="p-6">
             {/* Profile Header */}

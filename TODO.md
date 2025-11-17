@@ -1,4 +1,14 @@
 - [x] Update README.md with project-specific content including description, features, tech stack, setup instructions, and deployment info.
+- [x] Adjust PlaylistCard padding to p-3 for better sizing.
+- [x] Change grid layout to lg:grid-cols-6 gap-3 to fit 5-6 cards per row.
 - [x] Adjust grid layout in Home.tsx and Profile.tsx to fit 5 music cards by changing lg:grid-cols-4 to lg:grid-cols-5.
 - [x] Add category filtering in Home.tsx: add state for selected tab, add podcast data, filter sections based on tab selection.
 - [x] Add new playlist creation functionality: modify Sidebar.tsx to add dialog for creating playlists when "+" button is clicked.
+- [x] Fix mobile navigation: add Search icon to Sidebar main menu so it appears on mobile.
+- [x] Add hamburger menu to mobile navbar for sidebar access.
+- [x] Make hamburger menu functional with slide-out sidebar.
+- [x] Fix hamburger menu functionality in Favorites and Profile pages.
+- [x] Remove category tabs from mobile navbar next to profile.
+- [x] Move profile to top right and notifications to left of profile on mobile.
+- [x] Remove down arrow icon from profile dropdown.
+- [x] Add home icon next to hamburger menu in mobile navbar.

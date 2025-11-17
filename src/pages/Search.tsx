@@ -21,6 +21,7 @@ interface SearchProps {
 const Search = ({ currentTrack, setCurrentTrack }: SearchProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTab, setSelectedTab] = useState("all");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Mock search results
   const searchResults = {
@@ -72,9 +73,7 @@ const Search = ({ currentTrack, setCurrentTrack }: SearchProps) => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="hidden md:block">
-        <Sidebar />
-      </div>
+      <Sidebar isOpen={isSidebarOpen} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar />
         <main className="flex-1 overflow-y-auto pb-20 md:pb-24">

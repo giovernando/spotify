@@ -8,7 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
-export const Sidebar = () => {
+interface SidebarProps {
+  isOpen?: boolean;
+}
+
+export const Sidebar = ({ isOpen = false }: SidebarProps) => {
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -35,7 +39,7 @@ export const Sidebar = () => {
 
   const mainMenu = [
     { icon: Home, label: "Beranda", path: "/" },
-
+    { icon: Search, label: "Cari", path: "/search" },
     { icon: Library, label: "Pustaka", path: "/library" },
   ];
 
@@ -57,7 +61,11 @@ export const Sidebar = () => {
   };
 
   return (
-    <aside className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col h-full">
+    <aside className={cn(
+      "w-64 bg-sidebar border-r border-sidebar-border flex flex-col h-full fixed left-0 top-0 z-50 transition-transform duration-300",
+      "md:relative md:translate-x-0 md:block",
+      isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+    )}>
       {/* Main Navigation */}
       <div className="p-6 space-y-2">
         {mainMenu.map((item) => (

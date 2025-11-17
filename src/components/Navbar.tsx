@@ -1,4 +1,4 @@
-import { Bell, ChevronDown, User, Search, Home, LogIn } from "lucide-react";
+import { Bell, User, Search, Home, LogIn, Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -17,7 +17,7 @@ interface NavbarProps {
   setSelectedTab?: (tab: string) => void;
 }
 
-export const Navbar = ({ selectedTab, setSelectedTab }: NavbarProps) => {
+export const Navbar = ({ selectedTab, setSelectedTab, onMenuClick }: NavbarProps & { onMenuClick?: () => void }) => {
   // Get user data from localStorage or use default
   const getUserData = () => {
     const savedUser = localStorage.getItem('user');
@@ -110,8 +110,19 @@ export const Navbar = ({ selectedTab, setSelectedTab }: NavbarProps) => {
 
       {/* Mobile Layout */}
       <div className="md:hidden flex items-center justify-between h-16 px-4">
-        {/* Left section - Profile and Tabs */}
-        <div className="flex items-center space-x-4">
+        {/* Left section - Hamburger Menu and Home */}
+        <div className="flex items-center space-x-2">
+          <Button variant="ghost" size="icon" className="md:hidden" onClick={onMenuClick}>
+            <Menu className="w-6 h-6" />
+          </Button>
+          <Link to="/" className="flex items-center">
+            <Home className="w-6 h-6 text-white" />
+          </Link>
+        </div>
+
+        {/* Right section - Notifications and Profile */}
+        <div className="flex items-center space-x-2">
+          <NotificationDropdown />
           {/* Profile Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -125,7 +136,6 @@ export const Navbar = ({ selectedTab, setSelectedTab }: NavbarProps) => {
                       </AvatarFallback>
                     </Avatar>
                     <span className="text-sm font-medium hidden md:block">{user.name}</span>
-                    <ChevronDown className="w-4 h-4" />
                   </>
                 ) : (
                   <LogIn className="w-6 h-6" />
@@ -161,53 +171,6 @@ export const Navbar = ({ selectedTab, setSelectedTab }: NavbarProps) => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          {/* Tabs - Only show on mobile */}
-          {setSelectedTab && (
-            <div className="flex space-x-2">
-              <button
-                onClick={() => setSelectedTab("all")}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                  selectedTab === "all"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                }`}
-              >
-                Semua
-              </button>
-              <button
-                onClick={() => setSelectedTab("music")}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                  selectedTab === "music"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                }`}
-              >
-                Musik
-              </button>
-              <button
-                onClick={() => setSelectedTab("podcast")}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                  selectedTab === "podcast"
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                }`}
-              >
-                Podcast
-              </button>
-              <button
-                onClick={() => window.location.href = '/search'}
-                className="px-3 py-1 rounded-full text-sm font-medium transition-colors bg-secondary text-secondary-foreground hover:bg-secondary/80"
-              >
-                Cari
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Right section - Notifications */}
-        <div className="flex items-center">
-          <NotificationDropdown />
         </div>
       </div>
     </nav>

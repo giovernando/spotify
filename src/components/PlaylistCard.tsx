@@ -15,7 +15,7 @@ export const PlaylistCard = ({ id, title, description, cover, setCurrentTrack }:
   return (
     <Link to={`/playlist/${id}`}>
       <Card className="group bg-card hover:bg-accent transition-all duration-300 border-0 cursor-pointer">
-        <CardContent className="p-4">
+        <CardContent className="p-3">
           <div className="relative mb-4">
             <img
               src={cover}
