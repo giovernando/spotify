@@ -210,7 +210,7 @@ const Home = ({ currentTrack, setCurrentTrack }: HomeProps) => {
             {/* Header */}
             <div className="mb-4 md:mb-6">
               <h1 className="text-2xl md:text-3xl font-bold mb-4">Dibuat untuk {userName}</h1>
-              <div className="hidden md:flex space-x-2 overflow-x-auto">
+              <div className="md:flex space-x-2 overflow-x-auto">
                 <button
                   onClick={() => setSelectedTab("all")}
                   className={`px-3 md:px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${
