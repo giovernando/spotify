@@ -23,6 +23,7 @@ export const Navbar = () => {
   };
 
   const user = getUserData();
+  const isLoggedIn = localStorage.getItem('user') !== null;
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -74,12 +75,20 @@ export const Navbar = () => {
                 <span className="text-primary">Jelajahi Premium</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/auth/login" className="cursor-pointer">
-                  <span>Login</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="text-destructive">
+              {!isLoggedIn && (
+                <DropdownMenuItem asChild>
+                  <Link to="/auth/login" className="cursor-pointer">
+                    <span>Login</span>
+                  </Link>
+                </DropdownMenuItem>
+              )}
+              <DropdownMenuItem
+                className="text-destructive"
+                onClick={() => {
+                  localStorage.removeItem('user');
+                  window.location.reload();
+                }}
+              >
                 <span>Logout</span>
               </DropdownMenuItem>
             </DropdownMenuContent>

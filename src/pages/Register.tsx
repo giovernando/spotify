@@ -29,13 +29,19 @@ const Register = () => {
 
     setIsLoading(true);
 
-    // Simulate registration
+    // Simulate registration and save user data
     setTimeout(() => {
+      const userData = {
+        name: name,
+        email: email,
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
+
       toast({
         title: "Registrasi berhasil!",
         description: "Akun Anda telah dibuat.",
       });
-      navigate("/auth/login");
+      navigate("/");
       setIsLoading(false);
     }, 1000);
   };

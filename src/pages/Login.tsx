@@ -17,8 +17,14 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate login
+    // Simulate login and save user data
     setTimeout(() => {
+      const userData = {
+        name: email.split('@')[0], // Use email prefix as name
+        email: email,
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
+
       toast({
         title: "Login berhasil!",
         description: "Selamat datang kembali.",
