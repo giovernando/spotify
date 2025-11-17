@@ -1,0 +1,1 @@
+- [x] Update README.md with project-specific content including description, features, tech stack, setup instructions, and deployment info.
