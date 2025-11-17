@@ -35,7 +35,7 @@ export const Sidebar = () => {
 
   const mainMenu = [
     { icon: Home, label: "Beranda", path: "/" },
-    { icon: Search, label: "Cari", path: "/search" },
+
     { icon: Library, label: "Pustaka", path: "/library" },
   ];
 

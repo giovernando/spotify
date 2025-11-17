@@ -3,7 +3,6 @@ import { Navbar } from "@/components/Navbar";
 import { Sidebar } from "@/components/Sidebar";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import { PlaylistCard } from "@/components/PlaylistCard";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const Home = () => {
   const userName = "John";
@@ -115,13 +114,38 @@ const Home = () => {
             {/* Header */}
             <div className="mb-6">
               <h1 className="text-3xl font-bold mb-4">Dibuat untuk {userName}</h1>
-              <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
-                <TabsList className="bg-secondary">
-                  <TabsTrigger value="all">Semua</TabsTrigger>
-                  <TabsTrigger value="music">Musik</TabsTrigger>
-                  <TabsTrigger value="podcast">Podcast</TabsTrigger>
-                </TabsList>
-              </Tabs>
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => setSelectedTab("all")}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    selectedTab === "all"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  }`}
+                >
+                  Semua
+                </button>
+                <button
+                  onClick={() => setSelectedTab("music")}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    selectedTab === "music"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  }`}
+                >
+                  Musik
+                </button>
+                <button
+                  onClick={() => setSelectedTab("podcast")}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    selectedTab === "podcast"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  }`}
+                >
+                  Podcast
+                </button>
+              </div>
             </div>
 
             {/* Recently Played */}

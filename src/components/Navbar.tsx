@@ -1,4 +1,4 @@
-import { Bell, ChevronDown, User } from "lucide-react";
+import { Bell, ChevronDown, User, Search, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
 import { NotificationDropdown } from "./NotificationDropdown";
 
 export const Navbar = () => {
@@ -18,12 +19,21 @@ export const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="flex items-center justify-between h-16 px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">M</span>
-          </div>
-          <span className="text-xl font-bold">Music</span>
+        <Link to="/" className="flex items-center">
+          <Home className="w-8 h-8 text-white" />
         </Link>
+
+        {/* Search */}
+        <div className="flex-1 max-w-md mx-8">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+            <Input
+              type="text"
+              placeholder="Cari lagu, artis, atau album..."
+              className="pl-10 bg-muted/50 border-0 focus:bg-background"
+            />
+          </div>
+        </div>
 
         {/* Right section */}
         <div className="flex items-center space-x-4">
